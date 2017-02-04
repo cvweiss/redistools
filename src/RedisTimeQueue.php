@@ -61,6 +61,11 @@ class RedisTimeQueue
 		$redis->zAdd($this->queueName, $time, $value);
 	}
 
+        public function pending()
+        {
+            return $redis->zCount($this->queueName, 0, time());
+        }
+
         public function next($block = true)
         {
                 global $redis;
