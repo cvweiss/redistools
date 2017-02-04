@@ -63,6 +63,8 @@ class RedisTimeQueue
 
         public function pending()
         {
+            global $redis;
+
             return $redis->zCount($this->queueName, 0, time());
         }
 
