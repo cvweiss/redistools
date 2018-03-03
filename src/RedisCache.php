@@ -27,4 +27,11 @@ class RedisCache
 	$key = md5($key);
         $redis->setex("RC:$key", $expireSeconds, serialize($value));
     }
+	
+    public static function delete($key)
+    {  
+        global $redis;
+
+        $redis->del("RC:$key");
+    }
 }
