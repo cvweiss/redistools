@@ -19,6 +19,7 @@ class RedisTtlCounter
 
         $value = serialize($value);
         $redis->zAdd($this->queueName, time(), $value);
+        $redis->expire($this->queueName, $this->ttl);
     }
 
     public function count()
